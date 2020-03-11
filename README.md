@@ -20,10 +20,11 @@ features to your application.
 STRUTTURA DATABASE
 -------------------
 
-      fornitore/            id, email, password, nome, ragione_sociale
+      fornitore/            id, id_utente, nome, ragione_sociale
       servizio/             id, nome, descrizione, id_tipologia, id_fornitore, id_citta
       tipologia/            id, nome
-      citta/                id, via, comune, cap           
+      citta/                id, via, comune, cap     
+      utente/               id, email, password      
 
 
 
