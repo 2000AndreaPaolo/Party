@@ -81,6 +81,15 @@ class ServizioController extends Controller{
       ]);
     }
   }
+
+  public function actionDelete($id){
+    if(Yii::$app->user->isGuest) {
+      return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
+    }
+    $this->findModel($id)->delete();
+    return $this->redirect(['index']);
+  }
+
   protected function findModel($id){
     if (($model = Servizio::findOne($id)) !== null) {
       return $model;
