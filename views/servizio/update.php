@@ -10,5 +10,6 @@ $this->params['breadcrumbs'][] = 'Aggiorna';
 <div class="altro-update">
   <?= $this->render('_form', [
     'model' => $model,
+    'model_citta' => $model_citta
     ]) ?>
   </div>
