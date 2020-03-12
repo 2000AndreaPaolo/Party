@@ -4,6 +4,7 @@ use Yii;
 
 use app\models\LoginForm;
 use app\models\User;
+use app\models\Fornitore;
 
 use yii\web\Controller;
 use app\controllers\SiteController;
@@ -24,9 +25,14 @@ class ProfiloController extends Controller{
     }
 
     public function actionIndex(){
-        if(Yii::$app->user->isGuest) {
-          return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
-        }
-        return $this->render('index');
+      if(Yii::$app->user->isGuest) {
+        return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
       }
+      $model_user = User::find()->where('id=:id',[':id'=>Yii::$app->user->identity->id])->all()[0];
+      $model_fornitore = Fornitore::find()->where('id_utente=:id',[':id'=>Yii::$app->user->identity->id])->all()[0];
+      return $this->render('index', [
+        "model_user" => $model_user,
+        "model_fornitore" => $model_fornitore
+      ]);
+    }
 }
