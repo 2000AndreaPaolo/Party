@@ -45,9 +45,9 @@ class ServizioController extends Controller{
       return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
     }
     $model = $this->findModel($id);
-    $model_citta = Citta::find()->where('id=:id',[':id'=>$model->id_citta])->all();
+    $model_citta = Citta::find()->where('id=:id',[':id'=>$model->id_citta])->all()[0];
     if($model->load(Yii::$app->request->post()) && $model_citta[0]->load(Yii::$app->request->post())){
-      if($model->save() && $model_citta[0]->save()){
+      if($model->save() && $model_citta->save()){
         return $this->redirect(['index', 'id' => $model->id]);
       }
     }else{
@@ -57,7 +57,30 @@ class ServizioController extends Controller{
       ]);
     }
   }
-
+  public function actionCreate(){
+    if(Yii::$app->user->isGuest) {
+      return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
+    }
+    $model = new Servizio();
+    $model_citta = new Citta();
+    if($model->load(Yii::$app->request->post()) && $model_citta->load(Yii::$app->request->post())){
+      if($model_citta->save())
+      {
+        $model->id_fornitore = Yii::$app->user->identity->id;
+        $model->id_citta = $model_citta->id;
+        if($model->save()){
+          return $this->redirect(['index', 'id' => $model->id]);
+        }
+      }
+      else  echo "ciao";exit;
+      
+    }else{
+      return $this->render('create', [
+        'model' => $model,
+        'model_citta' => $model_citta
+      ]);
+    }
+  }
   protected function findModel($id){
     if (($model = Servizio::findOne($id)) !== null) {
       return $model;

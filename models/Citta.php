@@ -10,7 +10,6 @@ class Citta extends \yii\db\ActiveRecord{
 
   public function rules(){
     return [
-      [['id'], 'required'],
       [['via'], 'required'],
       [['comune'],'required'],
       [['cap'],'required'],

@@ -10,7 +10,6 @@ class Servizio extends \yii\db\ActiveRecord{
 
   public function rules(){
     return [
-      [['id'], 'required'],
       [['nome'], 'required'],
       [['descrizione'],'required'],
       [['id_tipologia'],'required'],

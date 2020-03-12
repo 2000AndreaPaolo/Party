@@ -9,9 +9,9 @@ use yii\helpers\ArrayHelper;
   <?=$form->field($model, 'nome')->textInput(['required'=>true,'autocomplete'=>'off']);?>
   <?= $form->field($model, 'descrizione')->textArea()?>
   <?= $form->field($model, 'id_tipologia')->dropDownList(ArrayHelper::map(\app\models\Tipologia::find()->asArray()->all(),'id','nome'),['prompt'=>'Selezionare voce...','required'=>true]) ?>
-  <?=$form->field($model_citta[0], 'via')->textInput(['required'=>true,'autocomplete'=>'off']);?>
-  <?=$form->field($model_citta[0], 'comune')->textInput(['required'=>true,'autocomplete'=>'off']);?>
-  <?=$form->field($model_citta[0], 'cap')->textInput(['required'=>true,'autocomplete'=>'off']);?>
+  <?=$form->field($model_citta, 'via')->textInput(['required'=>true,'autocomplete'=>'off']);?>
+  <?=$form->field($model_citta, 'comune')->textInput(['required'=>true,'autocomplete'=>'off']);?>
+  <?=$form->field($model_citta, 'cap')->textInput(['required'=>true,'autocomplete'=>'off','type' => 'number']);?>
   <div class="form-group">
     <?= Html::submitButton($model->isNewRecord ? 'Crea' : 'Aggiorna', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
   </div>

@@ -10,7 +10,6 @@ class Tipologia extends \yii\db\ActiveRecord{
 
   public function rules(){
     return [
-      [['id'], 'required'],
       [['nome'], 'required']
     ];
   }
