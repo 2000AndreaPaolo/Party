@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\TipologiaSearch;
+use app\models\CittaSearch;
 $this->title = 'Elenco Servizi';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -19,7 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
             return TipologiaSearch::getTipologiaNomeById($model->id_tipologia);
         }
       ],
-      'id_citta:ntext',
+      [
+        'attribute' => 'Città',
+        'format'=>'raw',
+        'value'=>function ($model){
+            return CittaSearch::getCittaComuneById($model->id_citta);
+        }
+      ],
       ['class' => 'yii\grid\ActionColumn','template' => '{update} {delete}',
       'buttons' => [
         'update'=>function($url,$model){
