@@ -115,17 +115,33 @@ class ServizioController extends Controller{
     if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) != 'fornitore'){
       return $this->redirect(['/site/indec', 'model' => $model=new LoginForm()]);
     }
+    if(Yii::$app->request->post('form') === "delete")
+    {
+      $this->findModel($id)->delete();
+      return $this->redirect(['index']);
+    }
     $model = $this->findModel($id);
     $model_citta = Citta::find()->where('id=:id',[':id'=>$model->id_citta])->all()[0];
     $RecensioneSearch = new RecensioneSearch();
     $params['RecensioneSearch']=array();
     $params['RecensioneSearch']['id_servizio'] = $id;
     $dataProvider = $RecensioneSearch->search($params);
-    return $this->render('info', [
+    /*return $this->render('info', [
       'model' => $model,
       'model_citta' => $model_citta,
       'dataProvider' => $dataProvider
-    ]);
+    ]);*/
+    if($model->load(Yii::$app->request->post()) && $model_citta->load(Yii::$app->request->post())){
+      if($model->save() && $model_citta->save()){
+        return $this->redirect(['index', 'id' => $model->id]);
+      }
+    }else{
+      return $this->render('info', [
+        'model' => $model,
+        'model_citta' => $model_citta,
+        'dataProvider' => $dataProvider
+      ]);
+    }
   }
   protected function findModel($id){
     if (($model = Servizio::findOne($id)) !== null) {
