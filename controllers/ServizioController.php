@@ -41,8 +41,12 @@ class ServizioController extends Controller{
     $params['ServizioSearch']=array();
     $params['ServizioSearch']['id_fornitore'] = Yii::$app->user->id;
     $dataProvider = $servizioSearch->search($params);
+    $model_user = User::find()->where('id=:id',[':id'=>Yii::$app->user->identity->id])->all()[0];
+    $model = $dataProvider->getModels();
     return $this->render('index', [
       'dataProvider' => $dataProvider,
+      'model' => $model,
+      'model_user' => $model_user
     ]);
   }
 
@@ -84,8 +88,6 @@ class ServizioController extends Controller{
           return $this->redirect(['index', 'id' => $model->id]);
         }
       }
-      else  echo "ciao";exit;
-      
     }else{
       return $this->render('create', [
         'model' => $model,
