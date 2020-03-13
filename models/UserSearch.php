@@ -30,6 +30,8 @@ class UserSearch extends User{
     $query->andFilterWhere(['id'=>$this->id]);
     $query->andFilterWhere(['email'=>$this->email]);
     $query->andFilterWhere(['password'=>$this->password]);
+    $query->andFilterWhere(['nome_immagine'=>$this->nome_immagine]);
+    $query->andFilterWhere(['url_immagine'=>$this->url_immagine]);
     return $dataProvider;
   }
 
