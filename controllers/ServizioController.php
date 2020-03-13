@@ -7,6 +7,8 @@ use app\models\Citta;
 use app\models\LoginForm;
 use app\models\User;
 use app\models\ServizioSearch;
+use app\models\Recensione;
+use app\models\RecensioneSearch;
 
 use yii\web\Controller;
 use app\controllers\SiteController;
@@ -90,6 +92,23 @@ class ServizioController extends Controller{
     return $this->redirect(['index']);
   }
 
+  public function actionInfo($id)
+  {
+    if(Yii::$app->user->isGuest) {
+      return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
+    }
+    $model = $this->findModel($id);
+    $model_citta = Citta::find()->where('id=:id',[':id'=>$model->id_citta])->all()[0];
+    $RecensioneSearch = new RecensioneSearch();
+    $params['RecensioneSearch']=array();
+    $params['RecensioneSearch']['id_servizio'] = $id;
+    $dataProvider = $RecensioneSearch->search($params);
+    return $this->render('info', [
+      'model' => $model,
+      'model_citta' => $model_citta,
+      'dataProvider' => $dataProvider
+    ]);
+  }
   protected function findModel($id){
     if (($model = Servizio::findOne($id)) !== null) {
       return $model;

@@ -8,7 +8,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="altro-index">
-<?= Html::a('Aggiungi', ['create'], ['class' => 'btn btn-success']) ?>
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
@@ -28,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             return CittaSearch::getCittaComuneById($model->id_citta);
         }
       ],
-      ['class' => 'yii\grid\ActionColumn','template' => '{update} {delete}',
+      ['class' => 'yii\grid\ActionColumn','template' => '{update} {delete} {info}',
       'buttons' => [
         'update'=>function($url,$model){
           return Html::a('<span class="btn btn-primary">Modifica</span>', ['update', 'id' => $model->id]);
@@ -41,6 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
               'method' => 'post',
             ],
           ]);
+        }, 
+        'info' =>function($url, $model){
+          return Html::a('<span class="btn btn-info">Info</span>', ['info', 'id' => $model->id]);
         }
         ]],
       ],

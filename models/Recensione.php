@@ -13,6 +13,7 @@ class Recensione extends \yii\db\ActiveRecord{
       [['commento'], 'required'],
       [['valutazione'],'required'],
       [['id_servizio'],'required'],
+      [['id_utente'], 'required']
     ];
   }
 

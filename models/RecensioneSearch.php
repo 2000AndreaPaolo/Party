@@ -27,8 +27,8 @@ class RecensioneSearch extends Recensione{
       return $dataProvider;
     }
     $query->andFilterWhere(['id'=>$this->id]);
-    $query->andFilterWhere(['like', 'commento', $this->via]);
-    $query->andFilterWhere(['like', 'valutazione', $this->comune]);
+    $query->andFilterWhere(['like', 'commento', $this->commento]);
+    $query->andFilterWhere(['like', 'valutazione', $this->valutazione]);
     $query->andFilterWhere(['id_servizio'=>$this->id_servizio]);
     return $dataProvider;
   }
