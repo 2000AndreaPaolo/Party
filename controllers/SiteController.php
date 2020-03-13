@@ -96,6 +96,8 @@ class SiteController extends Controller{
         $model_fornitore = new Fornitore();
         $model_cliente = new Cliente();
         if($model_user->load(Yii::$app->request->post()) && $model_fornitore->load(Yii::$app->request->post()) && Yii::$app->request->post('form') === "fornitore"){
+            $model_user->nome_immagine = "no_image.jpg";
+            $model_user->url_immagine = "immagini/no_image.jpg";
             if($model_user->save()){
                 $model_fornitore->id_utente = $model_user->id;
                 if($model_fornitore->save()){
