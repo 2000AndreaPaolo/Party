@@ -8,6 +8,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="altro-index">
+<?= Html::a('Aggiungi', ['create'], ['class' => 'btn btn-success']) ?>
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
