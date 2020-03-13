@@ -6,6 +6,7 @@ use app\models\Servizio;
 use app\models\Citta;
 use app\models\LoginForm;
 use app\models\User;
+use app\models\UserSearch;
 use app\models\ServizioSearch;
 use app\models\Recensione;
 use app\models\RecensioneSearch;
@@ -30,8 +31,11 @@ class ServizioController extends Controller{
   }
 
   public function actionIndex(){
-    if(Yii::$app->user->isGuest) {
+    if(Yii::$app->user->isGuest){
       return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
+    }
+    if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) != 'fornitore'){
+      return $this->redirect(['/site/indec', 'model' => $model=new LoginForm()]);
     }
     $servizioSearch = new ServizioSearch();
     $params['ServizioSearch']=array();
@@ -45,6 +49,9 @@ class ServizioController extends Controller{
   public function actionUpdate($id){
     if(Yii::$app->user->isGuest) {
       return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
+    }
+    if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) != 'fornitore'){
+      return $this->redirect(['/site/indec', 'model' => $model=new LoginForm()]);
     }
     $model = $this->findModel($id);
     $model_citta = Citta::find()->where('id=:id',[':id'=>$model->id_citta])->all()[0];
@@ -62,6 +69,9 @@ class ServizioController extends Controller{
   public function actionCreate(){
     if(Yii::$app->user->isGuest) {
       return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
+    }
+    if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) != 'fornitore'){
+      return $this->redirect(['/site/indec', 'model' => $model=new LoginForm()]);
     }
     $model = new Servizio();
     $model_citta = new Citta();
@@ -88,6 +98,9 @@ class ServizioController extends Controller{
     if(Yii::$app->user->isGuest) {
       return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
     }
+    if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) != 'fornitore'){
+      return $this->redirect(['/site/indec', 'model' => $model=new LoginForm()]);
+    }
     $this->findModel($id)->delete();
     return $this->redirect(['index']);
   }
@@ -96,6 +109,9 @@ class ServizioController extends Controller{
   {
     if(Yii::$app->user->isGuest) {
       return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
+    }
+    if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) != 'fornitore'){
+      return $this->redirect(['/site/indec', 'model' => $model=new LoginForm()]);
     }
     $model = $this->findModel($id);
     $model_citta = Citta::find()->where('id=:id',[':id'=>$model->id_citta])->all()[0];

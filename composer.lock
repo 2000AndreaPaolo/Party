@@ -636,12 +636,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "7aa1587aff5fcaf157d0247e822057d56a790753"
+                "reference": "3c265aafd4798766f5c46b0787a9ccbe4f21fecb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/7aa1587aff5fcaf157d0247e822057d56a790753",
-                "reference": "7aa1587aff5fcaf157d0247e822057d56a790753",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3c265aafd4798766f5c46b0787a9ccbe4f21fecb",
+                "reference": "3c265aafd4798766f5c46b0787a9ccbe4f21fecb",
                 "shasum": ""
             },
             "require": {
@@ -728,7 +728,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2020-03-04T14:57:07+00:00"
+            "time": "2020-03-12T21:15:57+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1516,12 +1516,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "32017468e09881eb7ba9e12fc79358eac4d6ce27"
+                "reference": "1fcc3430e86c62e0215a3d29410a45dba9d5a22c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/32017468e09881eb7ba9e12fc79358eac4d6ce27",
-                "reference": "32017468e09881eb7ba9e12fc79358eac4d6ce27",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/1fcc3430e86c62e0215a3d29410a45dba9d5a22c",
+                "reference": "1fcc3430e86c62e0215a3d29410a45dba9d5a22c",
                 "shasum": ""
             },
             "require": {
@@ -1558,7 +1558,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2020-03-11T13:48:07+00:00"
+            "time": "2020-03-12T16:44:45+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1637,12 +1637,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef"
+                "reference": "a491d65139e2411c75704e871dd02bdddf5a4bdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/b2c28789e80a97badd14145fda39b545d83ca3ef",
-                "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/a491d65139e2411c75704e871dd02bdddf5a4bdc",
+                "reference": "a491d65139e2411c75704e871dd02bdddf5a4bdc",
                 "shasum": ""
             },
             "require": {
@@ -1677,7 +1677,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2020-01-17T21:11:47+00:00"
+            "time": "2020-03-12T21:49:07+00:00"
         },
         {
             "name": "opis/closure",
@@ -3473,12 +3473,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "287e271b673c2fc1aaa79745e3cceddba0ab80be"
+                "reference": "59964cdf703de5e5300b50f69adb5ad51c9626d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/287e271b673c2fc1aaa79745e3cceddba0ab80be",
-                "reference": "287e271b673c2fc1aaa79745e3cceddba0ab80be",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/59964cdf703de5e5300b50f69adb5ad51c9626d4",
+                "reference": "59964cdf703de5e5300b50f69adb5ad51c9626d4",
                 "shasum": ""
             },
             "require": {
@@ -3526,7 +3526,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-02T12:08:26+00:00"
+            "time": "2020-03-11T17:49:34+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -4009,12 +4009,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "f409400099502de2393ed7463e46e674adf72ca3"
+                "reference": "012c44a36a72cdca5e8f5c98d3d60a3d0f8f4e3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/f409400099502de2393ed7463e46e674adf72ca3",
-                "reference": "f409400099502de2393ed7463e46e674adf72ca3",
+                "url": "https://api.github.com/repos/symfony/string/zipball/012c44a36a72cdca5e8f5c98d3d60a3d0f8f4e3e",
+                "reference": "012c44a36a72cdca5e8f5c98d3d60a3d0f8f4e3e",
                 "shasum": ""
             },
             "require": {
@@ -4070,7 +4070,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2020-03-03T21:05:19+00:00"
+            "time": "2020-03-12T08:06:22+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -4078,12 +4078,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "0c7023a90e80d7819bb03483c027f3dee963b42a"
+                "reference": "0bd96cb60303445792534fac44eded30f1d3fab5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0c7023a90e80d7819bb03483c027f3dee963b42a",
-                "reference": "0c7023a90e80d7819bb03483c027f3dee963b42a",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/0bd96cb60303445792534fac44eded30f1d3fab5",
+                "reference": "0bd96cb60303445792534fac44eded30f1d3fab5",
                 "shasum": ""
             },
             "require": {
@@ -4133,7 +4133,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-08T14:04:50+00:00"
+            "time": "2020-03-12T17:11:13+00:00"
         },
         {
             "name": "theseer/tokenizer",

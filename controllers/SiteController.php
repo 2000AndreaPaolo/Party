@@ -9,6 +9,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
+use app\models\Fornitore;
+use app\models\Cliente;
 
 class SiteController extends Controller{
 
@@ -89,6 +92,30 @@ class SiteController extends Controller{
     }
 
     public function actionRegister(){
-        return $this->render('register');
+        $model_user = new User();
+        $model_fornitore = new Fornitore();
+        $model_cliente = new Cliente();
+        if($model_user->load(Yii::$app->request->post()) && $model_fornitore->load(Yii::$app->request->post()) && Yii::$app->request->post('form') === "fornitore"){
+            if($model_user->save()){
+                $model_fornitore->id_utente = $model_user->id;
+                if($model_fornitore->save()){
+                    Yii::$app->user->switchIdentity($model_user);
+                    return $this->redirect(['/site/index']);
+                }
+            }
+        }else if($model_user->load(Yii::$app->request->post()) && $model_cliente->load(Yii::$app->request->post()) && Yii::$app->request->post('form') === "cliente"){
+            if($model_user->save()){
+                $model_cliente->id_utente = $model_user->id;
+                if($model_cliente->save()){
+                    Yii::$app->user->switchIdentity($model_user);
+                    return $this->redirect(['/site/index']);
+                }
+            }
+        }
+        return $this->render('register', [
+            "model_user" => $model_user,
+            "model_fornitore" => $model_fornitore,
+            "model_cliente" => $model_cliente,
+        ]);
     }
 }

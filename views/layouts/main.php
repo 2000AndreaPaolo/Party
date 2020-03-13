@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\UserSearch;
 
 AppAsset::register($this);
 ?>
@@ -51,7 +52,20 @@ AppAsset::register($this);
                     ]
                 ],
               ]);
-        }else{
+        }else if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) === 'cliente'){
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => [
+                    ['label' => 'Home', 'url' => ['/site/index']],
+                    [
+                        'label'=>Yii::$app->user->identity->email,
+                        'items'=>[
+                            ['label' => 'Esci', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
+                        ]
+                    ]
+                ],
+              ]);
+        }else if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) === 'fornitore'){
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
