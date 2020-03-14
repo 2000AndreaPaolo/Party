@@ -21,15 +21,15 @@ $this->params['breadcrumbs'][] = 'Aggiorna';
     <div class="col-sm-4">
       <div class="immagine">
         <?php 
-            if($model->url_immagine != null){
-                echo Html::img('@web/'. $model->url_immagine);
+            if($model_immagine->url_immagine != null){
+                echo Html::img('@web/'. $model_immagine->url_immagine);
             } 
         ?>
       </div>
       <div class="media-upload">
           <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-          <?= $form->field($model, 'nome_immagine')->fileInput()?>
-          <?php echo Html::hiddenInput('url_immagine', $model->url_immagine);?>
+          <?= $form->field($model_immagine, 'nome_immagine')->fileInput()?>
+          <?php echo Html::hiddenInput('url_immagine', $model_immagine->url_immagine);?>
       </div>
     </div>
     <div class="col-sm-4">

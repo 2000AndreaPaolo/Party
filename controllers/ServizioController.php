@@ -10,6 +10,8 @@ use app\models\UserSearch;
 use app\models\ServizioSearch;
 use app\models\Recensione;
 use app\models\RecensioneSearch;
+use app\models\ImmagineSearch;
+use app\models\Immagine;
 
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -60,15 +62,19 @@ class ServizioController extends Controller{
     }
     $model = new Servizio();
     $model_citta = new Citta();
+    $model_immagine = new Immagine();
     if($model->load(Yii::$app->request->post()) && $model_citta->load(Yii::$app->request->post())){
       if($model_citta->save())
       {
         $model->id_fornitore = Yii::$app->user->identity->id;
         $model->id_citta = $model_citta->id;
-        $model->nome_immagine = "not_found.png";
-        $model->url_immagine = "immagini/not_found.png";
         if($model->save()){
-          return $this->redirect(['index', 'id' => $model->id]);
+          $model_immagine->nome_immagine = "not_found.png";
+          $model_immagine->url_immagine = "immagini/not_found.png";
+          $model_immagine->id_servizio = $model->id;
+          if($model_immagine->save()){
+            return $this->redirect(['index', 'id' => $model->id]);
+          }
         }
       }
     }else{
@@ -109,21 +115,23 @@ class ServizioController extends Controller{
     $params['RecensioneSearch']=array();
     $params['RecensioneSearch']['id_servizio'] = $id;
     $dataProvider = $RecensioneSearch->search($params);
+    $model_immagine = Immagine::find()->where('id_servizio=:id',[':id'=>$model->id])->all()[0];
     if($model->load(Yii::$app->request->post()) && $model_citta->load(Yii::$app->request->post())){
-      $nome = UploadedFile::getInstance($model, 'nome_immagine');
+      $nome = UploadedFile::getInstance($model_immagine, 'nome_immagine');
       if($nome){
         $url = 'immagini/'. $nome->baseName .'.'. $nome->extension;
         $nome->saveAs($url);
-        $model->nome_immagine = $nome;
-        $model->url_immagine = $url;
+        $model_immagine->nome_immagine = $nome;
+        $model_immagine->url_immagine = $url;
       }
-      if($model->save() && $model_citta->save()){
+      if($model->save() && $model_citta->save() && $model_immagine->save()){
         return $this->redirect(['info', 'id' => $model->id]);
       }
     }else{
       return $this->render('info', [
         'model' => $model,
         'model_citta' => $model_citta,
+        'model_immagine' => $model_immagine,
         'dataProvider' => $dataProvider
       ]);
     }

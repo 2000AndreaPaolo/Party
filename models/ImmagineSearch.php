@@ -10,9 +10,6 @@ class ServizioSearch extends Servizio{
   {
     return [
       [['id'], 'safe'],
-      [['id_tipologia'],'safe'],
-      [['id_fornitore'],'safe'],
-      [['id_citta'],'safe']
     ];
   }
 
@@ -30,11 +27,8 @@ class ServizioSearch extends Servizio{
       return $dataProvider;
     }
     $query->andFilterWhere(['id'=>$this->id]);
-    $query->andFilterWhere(['like', 'nome', $this->nome]);
-    $query->andFilterWhere(['like', 'descrizione', $this->descrizione]);
-    $query->andFilterWhere(['id_tipologia'=>$this->id_tipologia]);
-    $query->andFilterWhere(['id_fornitore'=>$this->id_fornitore]);
-    $query->andFilterWhere(['id_citta'=>$this->id_citta]);
+    $query->andFilterWhere(['like', 'nome_immagine', $this->nome_immagine]);
+    $query->andFilterWhere(['url_immagine'=>$this->url_immagine]);
     return $dataProvider;
   }
   

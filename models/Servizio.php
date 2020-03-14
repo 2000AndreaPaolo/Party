@@ -15,8 +15,6 @@ class Servizio extends \yii\db\ActiveRecord{
       [['id_tipologia'],'required'],
       [['id_fornitore'],'required'],
       [['id_citta'],'required'],
-      [['nome_immagine'], 'safe'],
-      [['url_immagine'], 'safe']
     ];
   }
 
