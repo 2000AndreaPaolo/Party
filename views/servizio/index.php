@@ -4,9 +4,10 @@ use yii\grid\GridView;
 use app\models\TipologiaSearch;
 use app\models\CittaSearch;
 use app\widgets\Card;
+use kartik\rating\StarRating;
+use app\models\RecensioneSearch;
 $this->title = 'Elenco Servizi';
 $this->params['breadcrumbs'][] = $this->title;
-//print_r($model[1]->nome);
 ?>
 
 <div class="altro-index">
@@ -23,7 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
       echo Card::widget([                        
         'title' => $m->nome,                   
         'body' => $m->descrizione,   
-        'footer' =>  Html::a('<span class="btn btn-info">Info</span>', ['info', 'id' => $m->id])
+        'footer' =>  Html::a('<span class="btn btn-info">Info</span>', ['info', 'id' => $m->id]) .''. StarRating::widget([
+          'name' => $m->id,
+          'value' => RecensioneSearch::getAVGById($m->id),
+          'pluginOptions' => [
+              'readonly' => true,
+              'showClear' => false,
+              'showCaption' => false,
+          ],
+      ])
      ]);
       echo '</div>';
       $count++;
@@ -35,5 +44,4 @@ $this->params['breadcrumbs'][] = $this->title;
     }  
     if ($count != 4) echo '</div>';
 ?>
-
 </div>

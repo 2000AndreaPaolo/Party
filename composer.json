@@ -16,7 +16,7 @@
     "require": {
         "php": ">=5.6.0",
         "yiisoft/yii2": "~2.0.14",
-        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-bootstrap": "@dev",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
     },
     "require-dev": {
@@ -29,7 +29,8 @@
         "symfony/browser-kit": ">=2.7 <=4.2.4",
         "codeception/module-filesystem": "^1.0.0",
         "codeception/module-yii2": "^1.0.0",
-        "codeception/module-asserts": "^1.0.0"
+        "codeception/module-asserts": "^1.0.0",
+        "kartik-v/yii2-widget-rating": "dev-master"
     },
     "config": {
         "process-timeout": 1800,

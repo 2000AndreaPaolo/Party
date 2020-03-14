@@ -32,4 +32,9 @@ class RecensioneSearch extends Recensione{
     $query->andFilterWhere(['id_servizio'=>$this->id_servizio]);
     return $dataProvider;
   }
+
+  public function getAVGById($id){
+    $res = Yii::$app->db->createCommand("SELECT AVG(valutazione) FROM recensione WHERE id_servizio=:id",[':id'=>$id])->queryScalar();
+    return $res;
+  }
 }

@@ -51,26 +51,6 @@ class ServizioController extends Controller{
     ]);
   }
 
-  public function actionUpdate($id){
-    if(Yii::$app->user->isGuest) {
-      return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
-    }
-    if(UserSearch::getClienteOrFornitore(Yii::$app->user->identity->id) != 'fornitore'){
-      return $this->redirect(['/site/indec', 'model' => $model=new LoginForm()]);
-    }
-    $model = $this->findModel($id);
-    $model_citta = Citta::find()->where('id=:id',[':id'=>$model->id_citta])->all()[0];
-    if($model->load(Yii::$app->request->post()) && $model_citta[0]->load(Yii::$app->request->post())){
-      if($model->save() && $model_citta->save()){
-        return $this->redirect(['index', 'id' => $model->id]);
-      }
-    }else{
-      return $this->render('update', [
-        'model' => $model,
-        'model_citta' => $model_citta
-      ]);
-    }
-  }
   public function actionCreate(){
     if(Yii::$app->user->isGuest) {
       return $this->redirect(['/site/login', 'model' => $model=new LoginForm()]);
