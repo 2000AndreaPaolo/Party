@@ -43,6 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
         $count = 1;
       }
     }  
-    if ($count != 4) echo '</div>';
+    if ($count != 5) echo '</div>';
 ?>
 </div>
