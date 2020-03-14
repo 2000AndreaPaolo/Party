@@ -35,6 +35,8 @@ class ServizioSearch extends Servizio{
     $query->andFilterWhere(['id_tipologia'=>$this->id_tipologia]);
     $query->andFilterWhere(['id_fornitore'=>$this->id_fornitore]);
     $query->andFilterWhere(['id_citta'=>$this->id_citta]);
+    $query->andFilterWhere(['nome_immagine'=>$this->nome_immagine]);
+    $query->andFilterWhere(['url_immagine'=>$this->url_immagine]);
     return $dataProvider;
   }
   

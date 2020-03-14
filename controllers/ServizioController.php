@@ -12,6 +12,7 @@ use app\models\Recensione;
 use app\models\RecensioneSearch;
 
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use app\controllers\SiteController;
 
 use yii\web\NotFoundHttpException;
@@ -84,6 +85,8 @@ class ServizioController extends Controller{
       {
         $model->id_fornitore = Yii::$app->user->identity->id;
         $model->id_citta = $model_citta->id;
+        $model->nome_immagine = "not_found.png";
+        $model->url_immagine = "immagini/not_found.png";
         if($model->save()){
           return $this->redirect(['index', 'id' => $model->id]);
         }
@@ -126,14 +129,16 @@ class ServizioController extends Controller{
     $params['RecensioneSearch']=array();
     $params['RecensioneSearch']['id_servizio'] = $id;
     $dataProvider = $RecensioneSearch->search($params);
-    /*return $this->render('info', [
-      'model' => $model,
-      'model_citta' => $model_citta,
-      'dataProvider' => $dataProvider
-    ]);*/
     if($model->load(Yii::$app->request->post()) && $model_citta->load(Yii::$app->request->post())){
+      $nome = UploadedFile::getInstance($model, 'nome_immagine');
+      if($nome){
+        $url = 'immagini/'. $nome->baseName .'.'. $nome->extension;
+        $nome->saveAs($url);
+        $model->nome_immagine = $nome;
+        $model->url_immagine = $url;
+      }
       if($model->save() && $model_citta->save()){
-        return $this->redirect(['index', 'id' => $model->id]);
+        return $this->redirect(['info', 'id' => $model->id]);
       }
     }else{
       return $this->render('info', [
