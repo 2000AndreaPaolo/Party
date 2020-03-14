@@ -4,6 +4,8 @@ use yii\grid\GridView;
 use app\models\ClienteSearch;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use kartik\rating\StarRating;
+use app\models\RecensioneSearch;
 $this->title = 'Info Servizio';
 $this->params['breadcrumbs'][] = ['label' => 'Servizi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Aggiorna';
@@ -47,7 +49,22 @@ $this->params['breadcrumbs'][] = 'Aggiorna';
       <?= GridView::widget([
           'dataProvider' => $dataProvider,
           'columns' => [
-            'valutazione:ntext',
+            [
+              'attribute' => 'Valutazione',
+              'format'=>'raw',
+              'value'=>function ($model_recensione){
+                  return StarRating::widget([
+                    'name' => $model_recensione->id,
+                    'value' => $model_recensione->valutazione,
+                    'pluginOptions' => [
+                        'readonly' => true,
+                        'showClear' => false,
+                        'showCaption' => false,
+                        'size' => 'xs',
+                    ],
+                ]);
+              }
+            ],
             'commento:ntext',
             [
               'attribute' => 'Utente',
@@ -61,4 +78,4 @@ $this->params['breadcrumbs'][] = 'Aggiorna';
       ?>
     </div>
   </div>
-</div>
+</div> 

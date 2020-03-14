@@ -20,23 +20,24 @@ $this->params['breadcrumbs'][] = $this->title;
       {
         echo '<div class="row">';
       }        
-      echo '<div class="col-sm-3">';
+      echo '<div class="col-sm-3" >';
       echo Card::widget([                        
         'title' => $m->nome,                   
         'body' => $m->descrizione,   
-        'footer' =>  Html::a('<span class="btn btn-info">Info</span>', ['info', 'id' => $m->id]) .''. StarRating::widget([
+        'footer' => '<div class="row"> <div class="col-xs-6" style="margin-right:-30px;">' . Html::a('<span class="btn btn-info">Info</span>', ['info', 'id' => $m->id]) . ' </div><div class="col-xs-6" style="margin-top: 3.5%">'. StarRating::widget([
           'name' => $m->id,
           'value' => RecensioneSearch::getAVGById($m->id),
           'pluginOptions' => [
               'readonly' => true,
               'showClear' => false,
               'showCaption' => false,
+              'size' => 'xs',
           ],
-      ])
+      ]). '</div> </div>',
      ]);
       echo '</div>';
       $count++;
-      if($count == 4)
+      if($count == 5)
       {
         echo '</div>';
         $count = 1;
